@@ -3,8 +3,8 @@ if (!blacket.packs) {
   alert(`You must be at the market to run this script.`);
   location.href = 'https://v2.blacket.org/market';
 } else if (!Object.keys(blacket.packs).includes(pack)) {
-    alert('That\'s not a pack.');
-    pack = prompt(`Pack to open?`);
+  alert('That\'s not a pack.');
+  pack = prompt(`Pack to open?`);
 }
 
 let amount = prompt(`How many of the ${pack} pack?\nType * for max possible with your tokens.`)
