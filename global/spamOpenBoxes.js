@@ -15,8 +15,8 @@ function open(pack) {
   blacket.requests.post("/worker/open", {
     pack: pack
   }, (data) => {
-    if (data.error) location.reload();
-    console.log('%c%s', `color: white; font-size: 25px; text-shadow: 0px 0px 15px ${blacket.rarities[blacket.blooks[data.blook].rarity].color}`, `${data.blook}`);
+    if (data.error !== 'You are opening packs too fast.') location.reload();
+    if (!data.error) console.log('%c%s', `color: white; font-size: 25px; text-shadow: 0px 0px 15px ${blacket.rarities[blacket.blooks[data.blook].rarity].color}`, `${data.blook}`);
   });
 };
 
