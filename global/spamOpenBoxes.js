@@ -1,18 +1,20 @@
-let pack = prompt(`Box to open?`, `Space`);
+let pack = prompt(`Box to open?`);
+if (!blacket.packs) {
+  alert(`You must be at the market to run this script.`);
+  location.href = 'https://v2.blacket.org/market';
+}
+if (!Object.keys(blacket.packs).includes(pack)) return alert('That\'s not a pack.');
+pack = prompt(`Box to open?`);
+
 let amount = prompt(`Amount of ${box} box?\nType * for max possible.`)
-if (isNaN(amt)) amount = Number.MAX_VALUE;
+if (amt.toString === '*') amount = Number.MAX_VALUE;
 let i = 0;
 
 function openPack(pack) {
   blacket.requests.post("/worker/open", {
     pack: pack
   }, (data) => {
-    if (data.error) {
-      if (data.error === 'Unauthorized') location.reload();
-      alert(data.error);
-      i--;
-      return;
-    };
+    if (data.error) location.reload();
     console.log('%c%s', `color: white; font-size: 25px; text-shadow: 0px 0px 15px ${blacket.rarities[blacket.blooks[data.blook].rarity].color}`, `${data.blook}`);
   });
 };
@@ -23,6 +25,6 @@ let check = setInterval(() => {
     i++;
   } else {
     clearInterval(check);
-    alert(`Box opening complete!`)
-  }
+    alert(`Box opening complete!`);
+  };
 }, 301);
