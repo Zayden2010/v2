@@ -1,16 +1,16 @@
-let pack = prompt(`Box to open?`);
+let pack = prompt(`Pack to open?`);
 if (!blacket.packs) {
   alert(`You must be at the market to run this script.`);
   location.href = 'https://v2.blacket.org/market';
 }
 if (!Object.keys(blacket.packs).includes(pack)) return alert('That\'s not a pack.');
-pack = prompt(`Box to open?`);
+pack = prompt(`Pack to open?`);
 
-let amount = prompt(`Amount of ${box} box?\nType * for max possible.`)
-if (amt.toString === '*') amount = Number.MAX_VALUE;
+let amount = prompt(`How many of the ${pack} pack?\nType * for max possible with your tokens.`)
+if (amount.toString() === '*') amount = Number.MAX_VALUE;
 let i = 0;
 
-function openPack(pack) {
+function open(pack) {
   blacket.requests.post("/worker/open", {
     pack: pack
   }, (data) => {
@@ -20,8 +20,8 @@ function openPack(pack) {
 };
 
 let check = setInterval(() => {
-  if (i < amt) {
-    openPack(pack);
+  if (i < amount) {
+    open(pack);
     i++;
   } else {
     clearInterval(check);
